@@ -1,14 +1,8 @@
+import { Menu } from 'lucide-react';
 import { useState } from 'react';
-
 import Logo from '../assets/logo-text.png';
 
-import { Menu } from 'lucide-react';
-
-
-
-
 const Navbar = () => {
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -20,31 +14,77 @@ const Navbar = () => {
 
         <img src={Logo} alt="logo" />
 
-        <ul className="hidden md:flex justify-center gap-10 ">
-          <li>Home</li>
-          <li>Technologies</li>
-          <li>Projects</li>
-          <li>About</li>
-          <li>Contact</li>
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex justify-center gap-8">
+          <li>
+            <a href="#" className="text-gray-700 font-medium hover:text-pink-600 transition-colors">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="#" className="text-gray-700 font-medium hover:text-pink-600 transition-colors">
+              Technologies
+            </a>
+          </li>
+          <li>
+            <a href="#" className="text-gray-700 font-medium hover:text-pink-600 transition-colors">
+              Projects
+            </a>
+          </li>
+          <li>
+            <a href="#" className="text-gray-700 font-medium hover:text-pink-600 transition-colors">
+              About
+            </a>
+          </li>
+          <li>
+            <a href="#" className="text-gray-700 font-medium hover:text-pink-600 transition-colors">
+              Contact
+            </a>
+          </li>
         </ul>
 
-        <div className="flex justify-center items-center gap-6">
-          <p>Sign In</p>
-          <button className="text-white text-[14px] bg-[#D91B7E]  px-4 py-2 rounded-3xl">
+        {/* Right: Sign In / Sign Up */}
+        <div className="flex items-center gap-4">
+          <button className="text-gray-700 font-medium hover:text-pink-600 transition-colors cursor-pointer">
+            Sign In
+          </button>
+          <button className="text-white text-sm font-semibold bg-[#D91B7E] px-5 py-2 rounded-full hover:bg-[#b81568] transition-colors cursor-pointer">
             Sign Up
           </button>
         </div>
       </nav>
+
       <hr className="border-t border-gray-200" />
 
+      {/* Mobile Dropdown Menu */}
       {isMenuOpen && (
-        <div className=" md:hidden bg-white border-t border-gray-200 px-4 pb-4">
-          <ul className="flex flex-col gap-3 pt-3 ">
-            <li>Home</li>
-            <li>Technologies</li>
-            <li>Projects</li>
-            <li>About</li>
-            <li>Contact</li>
+        <div className="md:hidden bg-white border-t border-gray-200 px-4 pb-4">
+          <ul className="flex flex-col gap-3 pt-3">
+            <li>
+              <a href="#" className="block text-gray-700 font-medium hover:text-pink-600 transition-colors">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#" className="block text-gray-700 font-medium hover:text-pink-600 transition-colors">
+                Technologies
+              </a>
+            </li>
+            <li>
+              <a href="#" className="block text-gray-700 font-medium hover:text-pink-600 transition-colors">
+                Projects
+              </a>
+            </li>
+            <li>
+              <a href="#" className="block text-gray-700 font-medium hover:text-pink-600 transition-colors">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="#" className="block text-gray-700 font-medium hover:text-pink-600 transition-colors">
+                Contact
+              </a>
+            </li>
           </ul>
         </div>
       )}
