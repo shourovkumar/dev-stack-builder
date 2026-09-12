@@ -11,7 +11,7 @@ const ExploreSection = () => {
 
   useEffect(() => {
     fetch('/data.json')
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data: Technology[]) => {
         setTechnologies(data);
         setLoading(false);
@@ -42,10 +42,7 @@ const ExploreSection = () => {
   return (
     <section className="container mx-auto px-4 py-10">
       <h2 className="text-3xl md:text-4xl font-bold">
-        Explore the{' '}
-        <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 bg-clip-text text-transparent">
-          Technologies
-        </span>
+        Explore the <span className="brand-gradient-text">Technologies</span>
       </h2>
       <p className="text-gray-500 mt-2">
         Pick one technology per category to build your ideal stack.
@@ -59,10 +56,15 @@ const ExploreSection = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {technologies.map(tech => {
-                const isSelected = selectedTechs.some(t => t.id === tech.id);
+              {technologies.map((tech) => {
+                const isSelected = selectedTechs.some((t) => t.id === tech.id);
                 return (
-                  <TechCard key={tech.id} tech={tech} onAdd={handleAdd} isSelected={isSelected} />
+                  <TechCard
+                    key={tech.id}
+                    tech={tech}
+                    onAdd={handleAdd}
+                    isSelected={isSelected}
+                  />
                 );
               })}
             </div>
