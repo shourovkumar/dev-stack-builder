@@ -4,6 +4,20 @@ import Logo from '../assets/logo-text.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState('Home');
+
+  const links = ['Home', 'Technologies', 'Projects', 'About', 'Contact'];
+
+  const handleLinkClick = (link: string) => {
+    setActiveLink(link);
+    setIsMenuOpen(false);
+
+    if (link === 'Home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (link === 'Technologies') {
+      document.getElementById('technologies')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="sticky top-0 z-50 bg-white relative">
@@ -16,31 +30,20 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex justify-center gap-8">
-          <li>
-            <a href="#" className="text-gray-700 font-medium hover:text-pink-600 transition-colors">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="#" className="text-gray-700 font-medium hover:text-pink-600 transition-colors">
-              Technologies
-            </a>
-          </li>
-          <li>
-            <a href="#" className="text-gray-700 font-medium hover:text-pink-600 transition-colors">
-              Projects
-            </a>
-          </li>
-          <li>
-            <a href="#" className="text-gray-700 font-medium hover:text-pink-600 transition-colors">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="#" className="text-gray-700 font-medium hover:text-pink-600 transition-colors">
-              Contact
-            </a>
-          </li>
+          {links.map((link) => (
+            <li key={link}>
+              <button
+                onClick={() => handleLinkClick(link)}
+                className={`transition-colors cursor-pointer ${
+                  activeLink === link
+                    ? 'text-pink-600 font-semibold border-b-2 border-pink-600 pb-1'
+                    : 'text-gray-700 font-medium hover:text-pink-600'
+                }`}
+              >
+                {link}
+              </button>
+            </li>
+          ))}
         </ul>
 
         {/* Right Side Buttons */}
@@ -56,35 +59,24 @@ const Navbar = () => {
 
       <hr className="border-t border-gray-200" />
 
-      {/* Mobile Dropdown - OVERLAY */}
+      {/* Mobile Dropdown */}
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-200 px-4 pb-4 shadow-lg">
           <ul className="flex flex-col gap-3 pt-3">
-            <li>
-              <a href="#" className="block text-gray-700 font-medium hover:text-pink-600 transition-colors">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" className="block text-gray-700 font-medium hover:text-pink-600 transition-colors">
-                Technologies
-              </a>
-            </li>
-            <li>
-              <a href="#" className="block text-gray-700 font-medium hover:text-pink-600 transition-colors">
-                Projects
-              </a>
-            </li>
-            <li>
-              <a href="#" className="block text-gray-700 font-medium hover:text-pink-600 transition-colors">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#" className="block text-gray-700 font-medium hover:text-pink-600 transition-colors">
-                Contact
-              </a>
-            </li>
+            {links.map((link) => (
+              <li key={link}>
+                <button
+                  onClick={() => handleLinkClick(link)}
+                  className={`block w-full text-left transition-colors cursor-pointer ${
+                    activeLink === link
+                      ? 'text-pink-600 font-semibold'
+                      : 'text-gray-700 font-medium hover:text-pink-600'
+                  }`}
+                >
+                  {link}
+                </button>
+              </li>
+            ))}
           </ul>
         </div>
       )}
