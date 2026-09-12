@@ -6,7 +6,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="sticky top-0 z-50 bg-white">
+    <div className="sticky top-0 z-50 bg-white relative">
       <nav className="container mx-auto flex justify-between pt-5 pb-5 items-center px-4">
         <button className="md:hidden text-2xl" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <Menu />
@@ -43,7 +43,7 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* Right: Sign In / Sign Up */}
+        {/* Right Side Buttons */}
         <div className="flex items-center gap-4">
           <button className="text-gray-700 font-medium hover:text-pink-600 transition-colors cursor-pointer">
             Sign In
@@ -56,9 +56,9 @@ const Navbar = () => {
 
       <hr className="border-t border-gray-200" />
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Dropdown - OVERLAY */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200 px-4 pb-4">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-200 px-4 pb-4 shadow-lg">
           <ul className="flex flex-col gap-3 pt-3">
             <li>
               <a href="#" className="block text-gray-700 font-medium hover:text-pink-600 transition-colors">
