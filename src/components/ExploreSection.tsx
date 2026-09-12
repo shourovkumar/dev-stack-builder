@@ -7,11 +7,15 @@ import TechCard from './TechCard';
 const ExploreSection = () => {
   const [technologies, setTechnologies] = useState<Technology[]>([]);
   const [selectedTechs, setSelectedTechs] = useState<Technology[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/data.json')
-      .then((res) => res.json())
-      .then((data: Technology[]) => setTechnologies(data));
+      .then(res => res.json())
+      .then((data: Technology[]) => {
+        setTechnologies(data);
+        setLoading(false);
+      });
   }, []);
 
   const handleAdd = (tech: Technology) => {
@@ -49,19 +53,20 @@ const ExploreSection = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mt-8">
         <div className="lg:col-span-3">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {technologies.map((tech) => {
-              const isSelected = selectedTechs.some((t) => t.id === tech.id);
-              return (
-                <TechCard
-                  key={tech.id}
-                  tech={tech}
-                  onAdd={handleAdd}
-                  isSelected={isSelected}
-                />
-              );
-            })}
-          </div>
+          {loading ? (
+            <div className="flex justify-center items-center py-20 col-span-full">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-pink-600"></div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {technologies.map(tech => {
+                const isSelected = selectedTechs.some(t => t.id === tech.id);
+                return (
+                  <TechCard key={tech.id} tech={tech} onAdd={handleAdd} isSelected={isSelected} />
+                );
+              })}
+            </div>
+          )}
         </div>
 
         <div className="lg:col-span-1">
