@@ -19,6 +19,11 @@ const Navbar = () => {
     }
   };
 
+  const handleLogoClick = () => {
+    setActiveLink('Home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="sticky top-0 z-50 bg-white relative">
       <nav className="container mx-auto flex justify-between pt-5 pb-5 items-center px-4">
@@ -26,7 +31,13 @@ const Navbar = () => {
           <Menu />
         </button>
 
-        <img src={Logo} alt="logo" />
+        {/* ✅ Logo এখন clickable */}
+        <img
+          src={Logo}
+          alt="logo"
+          onClick={handleLogoClick}
+          className="cursor-pointer"
+        />
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex justify-center gap-8">
