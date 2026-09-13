@@ -31,17 +31,10 @@ const Navbar = () => {
           <Menu />
         </button>
 
-        {/* ✅ Logo এখন clickable */}
-        <img
-          src={Logo}
-          alt="logo"
-          onClick={handleLogoClick}
-          className="cursor-pointer"
-        />
+        <img src={Logo} alt="logo" onClick={handleLogoClick} className="cursor-pointer" />
 
-        {/* Desktop Menu */}
         <ul className="hidden md:flex justify-center gap-8">
-          {links.map((link) => (
+          {links.map(link => (
             <li key={link}>
               <button
                 onClick={() => handleLinkClick(link)}
@@ -62,7 +55,7 @@ const Navbar = () => {
           <button className="text-gray-700 font-medium hover:text-pink-600 transition-colors cursor-pointer">
             Sign In
           </button>
-          <button className="text-white text-sm font-semibold bg-[#D91B7E] px-5 py-2 rounded-full hover:bg-[#b81568] transition-colors cursor-pointer">
+          <button className="text-white text-sm font-semibold brand-gradient-bg px-5 py-2 rounded-full hover:bg-[#b81568] transition-colors cursor-pointer">
             Sign Up
           </button>
         </div>
@@ -74,7 +67,7 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-200 px-4 pb-4 shadow-lg">
           <ul className="flex flex-col gap-3 pt-3">
-            {links.map((link) => (
+            {links.map(link => (
               <li key={link}>
                 <button
                   onClick={() => handleLinkClick(link)}

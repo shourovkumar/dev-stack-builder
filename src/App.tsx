@@ -10,8 +10,8 @@ function App() {
       <Navbar />
       <Hero />
       <ExploreSection />
-      <ToastContainer position="top-right" autoClose={2000} />
       <Footer />
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 }
